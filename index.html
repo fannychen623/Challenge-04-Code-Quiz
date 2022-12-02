@@ -24,26 +24,29 @@
         <p>Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds!</p>
         <button id="startQuiz">Start Quiz</button>
       </section>
-      <section id="quiz">
-        <h3 id="question">sample question</h3>
-        <button>1. <span id="option1"></span></button>
-        <button>2. <span id="option2"></span></button>
-        <button>3. <span id="option3"></span></button>
-        <button>4. <span id="option4"></span></button>
+      <section id="quizPage">
+        <h3 id="question"></h3>
+        <ul>
+          <li><button id="option1"></button></li>
+          <li><button id="option2"></button></li>
+          <li><button id="option3"></button></li>
+          <li><button id="option4"></button></li>
+        </ul>
       </section>
-      <section id="score">
+      <section id="scorePage">
         <h4>All done!</h4>
         <form>
-          <p>Your final score is </p>
+          <p>Your final score is <span id="score"></span></p><br>
           <label for="initials">Enter initials: </label>
           <input type="text" name="initials" id="initials"/>
           <button id="submitScore">Submit</button>
         </form>
       </section>
       <section id="notification">
-        <h5 id="answerCheck">Wrong!</h5>
+        <h5 id="answerCheck"></h5>
       </section>
-      <section id="highscores">
+      <section id="highscoresPage">
+        <p>Highscores</p>
         <ul id="highscores-list"></ul>
         <button id="goBack">Go Back</button>
         <button id="clearHighscores">Clear Highscores</button>
