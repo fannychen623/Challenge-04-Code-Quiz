@@ -14,10 +14,39 @@
   <body>
     <!-- header including the title of the page -->
     <header>
-      <h1>Code Quiz</h1>
+      <h1 id="viewHighscores">View Highscore</h1>
+      <h1>Time: <span id="time"></span></h1>
     </header>
     <!-- main section of the page -->
     <main>
+      <section class="titlePage">
+        <h2>Coding Quiz Challenge</h2>
+        <p>Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds!</p>
+        <button id="startQuiz">Start Quiz</button>
+      </section>
+      <section class="quiz">
+        <h3></h3>
+        <button>1. <span id="option1"></span></button>
+        <button>2. <span id="option2"></span></button>
+        <button>3. <span id="option3"></span></button>
+        <button>4. <span id="option4"></span></button>
+      </section>
+      <section class="score">
+        <h4>All done!</h4>
+        <p>Your final score is </p>
+        <form>
+          <label for="initials">Enter initials:</label>
+          <input type="text" name="initials" id="initials"/>
+          <button id="submitScore">Submit</button>
+        </form>
+      </section>
+      <section class="notification">
+        <h5 id="answerCheck"></h5>
+      </section>
+      <section class="highscores">
+        <ul id="highscores-list"></ul>
+        <button id="goBack">Go Back</button>
+        <button id="clearHighscores">Clear Highscores</button>
       </section>
     </main>
 
