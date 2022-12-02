@@ -1,27 +1,80 @@
 /* defined variables */
 :root {
-  --bkg: #f9fbfd;
-  --box: hsl(0, 0%, 100%);
-  --txt: hsl(206, 17%, 28%);
-  --deco: #c0c7cf;
-  --btn: hsl(360, 91%, 36%);
+  --txt1: hsl(0, 0%, 0%);
+  --txt2: hsl(0, 0%, 100%);
+  --deco: #6f2190;
+  --box: #dbbbe9;
 }
 
 /* page background and default font */
 body {
   font-family: sans-serif;
-  background-color: var(--bkg);
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+  font-size: 20px;
+}
+
+button {
+  background-color: var(--deco);
+  color: var(--txt2);
+  padding: 10px;
+  margin-top: 25px;
+  border-color: var(--txt2);
+  border-radius: 10px;
+}
+
+button:hover {
+  opacity: 75%;
 }
 
 /* includes the h1 element */
-header {
-  text-align: center;
-  padding: 25px;
-  color: var(--txt);
-  font-size: 34px;
+#viewHighscores {
+  color: var(--deco);
+  background-color: white;
+  border: none;
+  padding: 0px;
+  margin: 0px;
+}
+
+header p {
+  color: var(--txt1);
 }
 
 /* main section of the page */
 main {
-  padding: 15px;
+  width: 50%;
+  padding: 40px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+#titlePage {
+  text-align: center;
+}
+
+h2 {
+  font-size: 35px;
+  padding: 30px;
+}
+
+h3, h4 {
+  font-size: 28px;
+  padding-bottom: 5px;
+}
+
+form {
+  font-weight: bold;
+  padding-top: 25px;
+}
+
+#notification {
+  border-top: 5px solid rgb(189, 189, 189);
+  color:rgb(189, 189, 189);
+  padding-top: 10px;
+  font-size: 18px;
+  font-style: italic;
 }
