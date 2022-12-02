@@ -1,0 +1,27 @@
+/* defined variables */
+:root {
+  --bkg: #f9fbfd;
+  --box: hsl(0, 0%, 100%);
+  --txt: hsl(206, 17%, 28%);
+  --deco: #c0c7cf;
+  --btn: hsl(360, 91%, 36%);
+}
+
+/* page background and default font */
+body {
+  font-family: sans-serif;
+  background-color: var(--bkg);
+}
+
+/* includes the h1 element */
+header {
+  text-align: center;
+  padding: 25px;
+  color: var(--txt);
+  font-size: 34px;
+}
+
+/* main section of the page */
+main {
+  padding: 15px;
+}
