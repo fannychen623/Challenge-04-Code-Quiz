@@ -3,22 +3,49 @@ var quizPage = document.getElementById('quizPage');
 var notifications = document.getElementById('notification');
 var scorePage = document.getElementById('scorePage');
 var highscoresPage = document.getElementById('highscoresPage');
-var startQuizbutton = document.getElementById('startQuiz');
+var viewHighscoresButton = document.getElementById('viewHighscores');
+var startQuizButton = document.getElementById('startQuiz');
 var option1 = document.getElementById('option1');
 var option2 = document.getElementById('option2');
 var option3 = document.getElementById('option3');
 var option4 = document.getElementById('option4');
-var submitScorebutton = document.getElementById('submitScore');
-var goBackbutton = document.getElementById('goBack');
-var clearHighscoresbutton = document.getElementById('clearHighscores');
+var submitScoreButton = document.getElementById('submitScore');
+var goBackButton = document.getElementById('goBack');
+var clearHighscoresButton = document.getElementById('clearHighscores');
 var timeEl = document.getElementById('time');
 var questionEl = document.getElementById('question');
 var answerCheckEl = document.getElementById('answerCheck');
-var highscoresListEl = document.getElementById('highscores-list');
+var initialsListEl = document.getElementById('initialsList');
+var highscoresListEl = document.getElementById('highscoresList');
 var scoreEl = document.getElementById('score');
 var initialsEl = document.getElementById('initials');
 
+var recordedInitials = [];
+var recordedScores = [];
 var score = 0;
+var qnum = 1;
+
+var questionBank = {
+  question: ["Commonly used data types DO NOT include:", 
+  "The condition in an if / else statement is enclosed within ______.",
+  "Arrays in JavaScript can be used to store ______.",
+  "String values must be enclosed within ______ when being assigned to variables.",
+  "A very useful tool used during development and debugging for printing content to the debugger is:"],
+  option1: ["strings", "quotes", "numbers and strings", "commas", "JavaScript"],
+  option2: ["booleans", "curly brackets", "other arrays", "curly brackets", "terminal/bash"],
+  option3: ["alerts", "parentheses", "booleans", "quotes", "for loops"],
+  option4: ["numbers","square brackets", "all of the above", "parentheses", "console.log"],
+  answer: ["option3", "option3", "option4", "option3", "option4"],
+};
+
+function uploadQuestion(qnum) {
+  questionEl.textContent = questionBank.question[qnum];
+  option1.textContent = "1. " + questionBank.option1[qnum];
+  option2.textContent = "2. " + questionBank.option2[qnum];
+  option3.textContent = "3. " + questionBank.option3[qnum];
+  option4.textContent = "4. " + questionBank.option4[qnum];
+};
+
 function completeQuiz() {
   quizPage.style.display = "none";
   scorePage.style.display = "block";
@@ -31,7 +58,7 @@ function countdown() {
   // Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
   var timeInterval = setInterval(function () {
     // As long as the `timeLeft` is greater than 1
-    if (timeLeft > 1 && scorePage.style.display === "none") {
+    if (timeLeft > 1 && quizPage.style.display === "block") {
       // Set the `textContent` of `timerEl` to show the remaining seconds
       timeEl.textContent = timeLeft + ' seconds';
       // Decrement `timeLeft` by 1
@@ -42,38 +69,21 @@ function countdown() {
       // Use `clearInterval()` to stop the timer
       clearInterval(timeInterval);
       // Call the `displayMessage()` function
-      completeQuiz();
+      if (highscoresPage.style.display === "none") {
+        completeQuiz();
+      }
     };
   }, 1000);
-};
-
-var qnum = 1;
-var questionBank = {
-  question: ["Commonly used data types DO NOT include:", 
-  "The condition in an if / else statement is enclosed within ______."],
-  option1: ["strings", "quotes"],
-  option2: ["booleans", "curly brackets"],
-  option3: ["alerts", "parentheses"],
-  option4: ["numbers","square brackets"],
-  answer: ["option3", "option3"],
-};
-
-function uploadQuestion(qnum) {
-  questionEl.textContent = questionBank.question[qnum];
-  option1.textContent = "1. " + questionBank.option1[qnum];
-  option2.textContent = "2. " + questionBank.option2[qnum];
-  option3.textContent = "3. " + questionBank.option3[qnum];
-  option4.textContent = "4. " + questionBank.option4[qnum];
 };
 
 function showNotification() {
   notifications.style.display = "block";
   setTimeout(() => {
     notifications.style.display = "none";
-  }, 1000);
+  }, 1500);
 };
 
-quizPage.addEventListener("click", function(event) {
+quizPage.addEventListener("click", function optionClick(event) {
   var element = event.target;
   if (element.matches("button") === true && element.id === questionBank.answer[qnum]) {
     answerCheckEl.textContent = "Correct!";
@@ -91,7 +101,7 @@ quizPage.addEventListener("click", function(event) {
   };
 });
 
-startQuizbutton.addEventListener("click", function() {
+startQuizButton.addEventListener("click", function() {
   countdown();
   qnum = 0;
   uploadQuestion(qnum);
@@ -100,42 +110,86 @@ startQuizbutton.addEventListener("click", function() {
   quizPage.style.display = "block";
 });
 
-var recordedInitials = new Array[];
-var recordedScores = new Array[];
-submitScorebutton.addEventListener("click", function() {
-  recordedInitials.push(initialsEl.value);
-  recordedScores.push(score);
+function clearHighscores() {
+
+  initialsListEl.innerHTML = "";
+  highscoresListEl.innerHTML = "";
+
+  recordedInitials = [];
+  recordedScores = [];
   // Use .setItem() to store object in storage and JSON.stringify to convert it as a string
   localStorage.setItem("recordedInitials", JSON.stringify(recordedInitials));
   localStorage.setItem("recordedScores", JSON.stringify(recordedScores));
-  console.log(recordedInitials);
-  console.log(recordedScores);
+};
+
+function displayHighscores() {
+  titlePage.style.display = "none";
+  quizPage.style.display = "none";
+  notifications.style.display = "none";
+  scorePage.style.display = "none";
+  highscoresPage.style.display = "block";
+  //1) combine the arrays:
+  var list = [];
+  for (var j = 0; j < recordedInitials.length; j++) 
+      list.push({'recordedInitials': recordedInitials[j], 'recordedScores': recordedScores[j]});
+  
+  //2) sort:
+  list.sort(function(a, b) {
+      return ((a.recordedScores < b.recordedScores) ? -1 : ((a.recordedScores == b.recordedScores) ? 0 : 1));
+      //Sort could be modified to, for example, sort on the age 
+      // if the name is the same.
+  });
+  
+  //3) separate them back out:
+  for (var k = 0; k < list.length; k++) {
+    recordedInitials[k] = list[k].recordedInitials;
+    recordedScores[k] = list[k].recordedScores;
+  };
+
+  initialsListEl.innerHTML = "";
+  highscoresListEl.innerHTML = "";
+
+  // Render a new li for each todo
+  for (var i = 0; i < recordedInitials.length; i++) {
+    var initials = recordedInitials[i];
+    var score = recordedScores[i];
+    var initialLi = document.createElement("li");
+    initialLi.textContent = initials;
+    initialsListEl.appendChild(initialLi);
+    var scoreLi = document.createElement("li");
+    scoreLi.textContent = score;
+    highscoresListEl.appendChild(scoreLi);
+  };
+};
+
+submitScoreButton.addEventListener("click", function() {
+  recordedInitials.push(initialsEl.value)
+  recordedScores.push(Math.round(score));
+  // Use .setItem() to store object in storage and JSON.stringify to convert it as a string
+  localStorage.setItem("recordedInitials", JSON.stringify(recordedInitials));
+  localStorage.setItem("recordedScores", JSON.stringify(recordedScores));
+  initialsEl.value = "";
+  displayHighscores();
 });
 
-// function displayScores() {
-//   for (var i = 0; i < todos.length; i++) {
-//     var todo = todos[i];
-
-//     var li = document.createElement("li");
-//     li.textContent = todo;
-//     li.setAttribute("data-index", i);
-
-//     var button = document.createElement("button");
-//     button.textContent = "Complete ✔️";
-
-//     li.appendChild(button);
-//     todoList.appendChild(li);
-//   }
-// };
-
-goBackbutton.addEventListener("click", init());
-
 function init() {
+  var storedInitials = JSON.parse(localStorage.getItem("recordedInitials"));
+  if (storedInitials !== null) {
+    recordedInitials = storedInitials;
+  };
+  var storedScores = JSON.parse(localStorage.getItem("recordedScores"));
+  if (storedScores !== null) {
+    recordedScores = storedScores;
+  };
   titlePage.style.display = "block";
   quizPage.style.display = "none";
   notifications.style.display = "none";
   scorePage.style.display = "none";
   highscoresPage.style.display = "none";
-}
+};
+
+goBackButton.addEventListener("click", init);
+viewHighscoresButton.addEventListener("click", displayHighscores);
+clearHighscoresButton.addEventListener("click", clearHighscores);
 
 init();

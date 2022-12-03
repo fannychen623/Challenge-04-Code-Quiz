@@ -35,19 +35,20 @@
       </section>
       <section id="scorePage">
         <h4>All done!</h4>
-        <form>
+        <form autocomplete="off">
           <p>Your final score is <span id="score"></span></p><br>
           <label for="initials">Enter initials: </label>
           <input type="text" name="initials" id="initials"/>
-          <button id="submitScore">Submit</button>
+          <button id="submitScore" type="button">Submit</button>
         </form>
       </section>
       <section id="notification">
         <h5 id="answerCheck"></h5>
       </section>
       <section id="highscoresPage">
-        <p>Highscores</p>
-        <ul id="highscores-list"></ul>
+        <h6>Highscores</h6>
+        <ul id="initialsList"></ul>
+        <ul id="highscoresList"></ul>
         <button id="goBack">Go Back</button>
         <button id="clearHighscores">Clear Highscores</button>
       </section>

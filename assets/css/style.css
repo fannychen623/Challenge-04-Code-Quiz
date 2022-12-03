@@ -62,7 +62,7 @@ h2 {
   padding: 30px;
 }
 
-h3, h4 {
+h3, h4, h6 {
   font-size: 28px;
   padding-bottom: 20px;
 }
@@ -85,6 +85,33 @@ form {
 #initials {
   padding: 5px;
   border-radius: 5px;
+}
+
+#initialsList {
+  text-align: left;
+  float: left;
+}
+
+#highscoresList {
+  text-align: right;
+}
+
+#highscoresPage ul li {
+  padding: 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-color: var(--box);
+}
+
+#highscoresPage ul li:nth-child(odd) { 
+  background: var(--deco); 
+  color: var(--txt2);
+}
+
+#highscoresList:after {
+  content: "";
+  display: block;
+  clear: both;
 }
 
 #notification {
