@@ -155,7 +155,7 @@ function completeQuiz() {
   // hide the quiz page and display the score page
   quizPage.style.display = "none";
   scorePage.style.display = "block";
-  // populate the score field with the final score
+  // populate the score field with the final score rounded to the nearest integer
   scoreEl.textContent = Math.round(score) + ".";
 }
 
@@ -187,6 +187,9 @@ function displayHighscores() {
   notifications.style.display = "none";
   scorePage.style.display = "none";
   highscoresPage.style.display = "block";
+  // clear the fields on the page from any pevious run
+  initialsListEl.innerHTML = "";
+  highscoresListEl.innerHTML = "";
   // sort the highscores and their respective initials based on largest to smallest
   // combine the initials array and scores array
   var list = [];
@@ -201,10 +204,6 @@ function displayHighscores() {
     recordedInitials[k] = list[k].recordedInitials;
     recordedScores[k] = list[k].recordedScores;
   };
-  // clear the fields on the page from any pevious runs
-  initialsListEl.innerHTML = "";
-  highscoresListEl.innerHTML = "";
-
   // render and append a new li for each initial and score record
   for (var i = 0; i < recordedInitials.length; i++) {
     var initials = recordedInitials[i];
