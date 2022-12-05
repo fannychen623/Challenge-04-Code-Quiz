@@ -95,7 +95,7 @@ function countdown() {
       }
     } else {
       // Once `timeLeft` gets to 0, set `timerEl` to an empty string
-      timeEl.textContent = '';
+      timeEl.textContent = "0";
       // Use `clearInterval()` to stop the timer
       clearInterval(timeInterval);
       // If the highscore page is not displayed then call the `completeQuiz()` function

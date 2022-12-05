@@ -24,6 +24,7 @@
 > Be able to retrieve stored data and/or clear stored data.
 >
 > **Note**: Extra features: Sorting highscores from largest to smallest, alternating colors for the highscores list, confirm clearing highscores before clearing local storage.
+> 
 > Only 1 html, each page is set as their individual section where the display is set to "none" unless they are to be displayed (which then the display will be set to "block").
 >
 ## User Story
