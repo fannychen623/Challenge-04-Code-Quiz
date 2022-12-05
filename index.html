@@ -12,18 +12,21 @@
   </head>
 
   <body>
-    <!-- header including the title of the page -->
+    <!-- header with link to highscores and timer display -->
     <header>
       <button id="viewHighscores">View Highscore</button>
       <p>Time: <span id="time"></span></p>
     </header>
     <!-- main section of the page -->
     <main>
+      <!-- each section are to be displayed individually  -->
+      <!-- title page with start quiz button -->
       <section id="titlePage">
         <h2>Coding Quiz Challenge</h2>
         <p>Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds!</p>
         <button id="startQuiz">Start Quiz</button>
       </section>
+      <!-- main quiz page with updating questions and 4 listed option buttons-->
       <section id="quizPage">
         <h3 id="question"></h3>
         <ul>
@@ -33,8 +36,10 @@
           <li><button id="option4"></button></li>
         </ul>
       </section>
+      <!-- displays the final score with form and button to log score -->
       <section id="scorePage">
         <h4>All done!</h4>
+        <!-- prevent initials textarea from autofills and showing previous entries -->
         <form autocomplete="off">
           <p>Your final score is <span id="score"></span></p><br>
           <label for="initials">Enter initials: </label>
@@ -42,9 +47,11 @@
           <button id="submitScore" type="button">Submit</button>
         </form>
       </section>
+      <!-- timed section that is displayed after each question -->
       <section id="notification">
         <h5 id="answerCheck"></h5>
       </section>
+      <!-- page displaying all recorded highscores -->
       <section id="highscoresPage">
         <h6>Highscores</h6>
         <ul id="initialsList"></ul>
@@ -54,7 +61,7 @@
       </section>
     </main>
 
-    <!-- link the JavaScript file that is used to generate and output the unique password -->
+    <!-- link the JavaScript file that is used to run the application -->
     <script src="./assets/script.js"></script>
   </body>
   

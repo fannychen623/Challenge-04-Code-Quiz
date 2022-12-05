@@ -6,11 +6,12 @@
   --box: #dbbbe9;
 }
 
-/* page background and default font */
+/* default font */
 body {
   font-family: sans-serif;
 }
 
+/* displays view highscore button and timer */
 header {
   display: flex;
   justify-content: space-between;
@@ -18,6 +19,7 @@ header {
   font-size: 20px;
 }
 
+/* all button styles */
 button {
   background-color: var(--deco);
   color: var(--txt2);
@@ -27,11 +29,12 @@ button {
   border-radius: 10px;
 }
 
+/* lighten button on hover */
 button:hover {
   opacity: 75%;
 }
 
-/* includes the h1 element */
+/* view highscore page style */
 #viewHighscores {
   color: var(--deco);
   background-color: white;
@@ -41,11 +44,7 @@ button:hover {
   display: block;
 }
 
-header p {
-  color: var(--txt1);
-}
-
-/* main section of the page */
+/* style of all the pages  */
 main {
   width: 50%;
   padding: 40px;
@@ -67,16 +66,29 @@ h3, h4, h6 {
   padding-bottom: 20px;
 }
 
+/* remove the left pullet points from the option buttons */
 ul {
   list-style: none;
 }
 
+/* spacing between the buttons */
 ul button{
   margin: 1.5px;
   font-size: 15px;
   display: block;
 }
 
+/* answer check below the question section */
+#notification {
+  border-top: 5px solid rgb(189, 189, 189);
+  color:rgb(189, 189, 189);
+  padding-top: 10px;
+  margin-top: 25px;
+  font-size: 18px;
+  font-style: italic;
+}
+
+/* initials form */
 form {
   font-weight: bold;
   padding-top: 25px;
@@ -87,6 +99,7 @@ form {
   border-radius: 5px;
 }
 
+/* highscore list - align two columns side by side */
 #initialsList {
   text-align: left;
   float: left;
@@ -103,22 +116,15 @@ form {
   background-color: var(--box);
 }
 
+/* alternate the background and text color of every other row in the highscore list */
 #highscoresPage ul li:nth-child(odd) { 
   background: var(--deco); 
   color: var(--txt2);
 }
 
+/* clear float */
 #highscoresList:after {
   content: "";
   display: block;
   clear: both;
-}
-
-#notification {
-  border-top: 5px solid rgb(189, 189, 189);
-  color:rgb(189, 189, 189);
-  padding-top: 10px;
-  margin-top: 25px;
-  font-size: 18px;
-  font-style: italic;
 }
